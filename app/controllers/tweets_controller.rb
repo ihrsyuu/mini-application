@@ -12,6 +12,7 @@ def new
 end
 
 def create
+  binding.pry
   Tweet.create(text: tweet_params[:text], user_id: current_user.id)
   redirect_to :action => "index"
 end
@@ -36,6 +37,10 @@ private
 
 def set_tweet
       @tweet = Tweet.find(params[:id])
+end
+
+def tweet_params
+    params.permit(:text)
 end
 
 def redirect_to_index
