@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
 
 before_action :redirect_to_index, except: :index
-before_action :set_tweet, only: [:edit, :destroy, :update]
+before_action :set_tweet, only: [:edit, :destroy, :update, :show]
 
 
 def index
@@ -12,7 +12,6 @@ def new
 end
 
 def create
-  binding.pry
   Tweet.create(text: tweet_params[:text], user_id: current_user.id)
   redirect_to :action => "index"
 end
@@ -22,7 +21,7 @@ end
 
 def update
   if @tweet.user_id == current_user.id
-       @tweet.update(tweet_params)
+       @tweet.update(params.require(:@tweet).permit(:text))
   end
   redirect_to :action => "index"
 end
@@ -31,6 +30,10 @@ def destroy
   if @tweet.user_id == current_user.id
         @tweet.destroy
   end
+    redirect_to :action => "index"
+end
+
+def show
 end
 
 private
@@ -40,7 +43,7 @@ def set_tweet
 end
 
 def tweet_params
-    params.permit(:text)
+    params.require(:tweets).permit(:text)
 end
 
 def redirect_to_index

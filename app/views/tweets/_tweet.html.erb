@@ -1,7 +1,15 @@
-<div>
-  <div>
-    <%= form_for('/tweets', method: :post) do %>
-      <%= f.text_area :review %>
-    <% end %>
+
+<div class="row">
+  <div class="col s12 m6", style="margin:auto;">
+    <div class="card-panel">
+      <div class="card-content gray-text" style="word-wrap:break-word;">
+       <%= simple_format(tweet.text) %>
+      </div>
+      <div class="card-action">
+        <%= link_to 'SHOW', "/tweets/#{tweet.id}", method: :get, class: "btn" %>
+        <%= link_to 'EDIT', "/tweets/#{tweet.id}/edit", method: :get, class: "btn" %>
+        <%= link_to 'DESTROY', "/tweets/#{tweet.id}", method: :delete, class: "btn" %>
+      </div>
+    </div>
   </div>
 </div>
