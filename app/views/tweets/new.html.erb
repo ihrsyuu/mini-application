@@ -1,0 +1,17 @@
+<div class="row">
+  <%= form_for :tweets, :url => { :action => "create" } do |f| %>
+    <div class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.text_area :text, class: "materialize-textarea" %>
+          <%= f.label :text, "本文" %>
+        </div>
+      </div>
+          <%= f.submit class: "btn", value: "送信"%>
+    </div>
+  <% end %>
+</div>
+
+
+
+
